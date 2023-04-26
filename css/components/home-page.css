@@ -1,0 +1,49 @@
+.home-page .search-bar{
+    margin-block: 30px;
+    grid-area: "serach";
+}
+
+.home-page .search-bar #img-search{
+    width: 400px;
+    height: 34px;
+    font-size: .7em;
+    padding: 5px;
+}
+
+.home-page .search-bar label{
+   font-size: 2em;
+}
+
+.home-page .search-by-keywords{
+    grid-area: "keywords";
+    min-height: 100px;
+    gap: 20px;
+    background-color: #31750abf;
+   padding-inline: 20px;
+   align-items: center;
+   border-radius: 20px;
+    margin-block-end: 20px;
+    flex-wrap: wrap;
+}
+
+.home-page .search-by-keywords a{
+    text-decoration: none;
+    color: var(--clr-3);
+}
+
+.home-page .gallery{
+    grid-area: "gallery";
+    gap: .7em;
+    grid-template-columns: repeat(auto-fit,minmax(300px,auto));
+}
+
+.home-page .gallery img{
+  width: 100%;
+    transition: .8s;
+}
+
+.home-page .gallery img{
+  width: 100%;
+transition: .8s;
+max-width: 400px;
+}

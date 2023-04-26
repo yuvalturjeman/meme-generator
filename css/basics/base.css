@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+  }
+  html {
+    color: #5a5959;
+    font-family: Quicksand-Regular;
+    background-color: #c0aaa866
+  }
+  
+  body {
+    font-size: 1rem;
+    margin: 0;
+  }
+ 
+  .canvas-container  {
+    width: 100%;
+  }
+  
+   h3, h4, h5,h6 {
+    margin: 0 0 1em;
+  }
+
+
+  h1{
+    margin-block-start: 20px;
+  }
+  
+  .card-input {
+    font-size: 1.75em;
+  }
+  
+   .saved-memes-container img {
+    width:300px;
+  }
+  .saved-memes-container{
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .home-page img:hover{
+   box-shadow: 0 0 5px #3f4044, 0 0 25px #3f4044, 0 0 50px #3f4044, 0 0 200px #3f4044;
+  
+  }
+  
+  .card .editor{
+    background-color: #607408b0;
+  }
+  
+  .emojis button {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    
+   }
+  
+  .emojis >*:hover {
+    scale: 1.3;
+  }
+  
+  .meme-creating{
+    margin-block: auto;
+  }

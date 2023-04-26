@@ -1,0 +1,194 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Meme GeneraTur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://kit.fontawesome.com/95ea80fe76.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="onInit()" class="main-layout">
+
+    <div class="main-screen" onclick="onToggleMenu()"></div>
+
+    <!-- modal -->
+    <div class="modal">
+        <button class="close-button" onclick="onToggleModal()">x</button>
+        <h1>Ultimate Meme Generator</h1>
+        <p>
+        </p>
+        <form class='form-modal' onsubmit="onToggleModal()">
+            <label>About us</label>
+        </form>
+        <h3 class="about-us"></h3>
+    </div>
+
+    <!-- header -->
+    <header class="main-header full main-layout">
+        <section class="nav flex space-between align-center">
+            <div class="logo">Ultimate Meme Generator</div>
+            <div type="button" class="toggle-menu" onclick="onToggleMenu()"></div>
+            <nav class="main-nav clean-list">
+                <ul class="main-menu clean-list flex">
+                    <li><a href="#" onclick="onShowMemesPage()">Saved Memes</a></li>
+                    <li><a href="#" onclick="onShowImgGallery()"> Gallery</a></li>
+                    <li><a href="#" onclick="onToggleModal()">About</a></li>
+                </ul>
+            </nav>
+        </section>
+        <!-- lang control-->
+    <section class="lang-selector"> 
+        <!-- onSetLang(this.value) -->
+        <select onchange=""> 
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+        </select>
+    </section>
+    </header>
+
+    
+
+
+    <!-- Photos gallery page-->
+    <main class="home-page">
+
+        <section class="search-bar">
+            <label for="img-search">Search:
+                <input id="img-search" type="search" placeholder="Choose\type a word" oninput="onFilterImgs(this.value)" list="keywords">
+            </label>
+            <button data-trans="flexible" class="btn-generate button btn-round" onclick="onRandomMeme()">I'm flexible</button>
+
+
+            <!-- generate this in javascript -->
+            <datalist id="keywords">
+                <option class="option1" data-trans="funny" value="funny">
+                <option class="option2" data-trans="politics" value="politics">
+                <option class="option3" data-trans="cute" value="cute">
+                <option class="option4" data-trans="dog" value="dog">
+                <option class="option5" data-trans="baby" value="baby">
+                <option class="option6" data-trans="sleep" value="sleep">
+                <option class="option7" data-trans="cat" value="cat">
+                <option class="option8" data-trans="happy" value="happy">
+                <option class="option9" data-trans="confused" value="confused">
+                <option class="option10" data-trans="funny" value="surprise">
+                <option class="option11" data-trans="surprise" value="creepy">
+                <option class="option12" data-trans="awkward" value="awkward">
+                <option class="option13" data-trans="famous" value="famous">
+
+              </datalist>
+        </section>
+        <ul class="search-by-keywords clean-list flex">
+        </ul>
+
+        <section class="gallery grid">
+        </section>
+    </main>
+
+    <!-- meme editing page-->
+    <main class="meme-creating">
+        <main class="main-content">
+            <div class="card card-layout">
+                <div class="canvas-container">
+                    <canvas id="my-canvas" width="600" height="600" style="outline: 3px solid black"></canvas>
+                </div>
+
+                <section class="editor flex">
+                    <div class="card-input">
+                        <input class="txt" type="text" placeholder="Write meme text here"
+                            oninput="onSetLineTxt(this.value)">
+                    </div>
+                    <div class="text-features flex space-between">
+                        <div class="btns-container flex space-between">
+                            <button class="up-down-btn btn-round" onclick="isIncreaseLineHt('true')" title="click to move line up"><i
+                                    class="fa-solid fa-arrow-up"></i></button>
+                            <button class="up-down-btn btn-round" onclick="isDecreaseLineHt('true')" title="click to move line down"><i
+                                    class="fa-solid fa-arrow-down"></i></button>
+                            <button class="up-down-btn btn-round" onclick="onSwitchLine()" title="click to switch line"><i
+                                    class="fa-solid fa-arrows-up-down"></i></button>
+                            <button class="add-line-btn btn-round" onclick="onAddLine()" title="click to add a line"><i
+                                    class="fa-solid fa-plus"></i></button>
+                            <button class="delete-line-btn btn-round" onclick="onDeleteLine()" title="click to delete the line"><i
+                                    class="fa-solid fa-trash-can"></i></button>
+                        </div>
+
+                        <section class="change-size-btns">
+                            <button class="increaseSize-btn btn-round" onclick="onSetFont(5)" title="click to increase font size" >A+</a></button>
+                            <button class="decreaseSize-btn btn-round" onclick="onSetFont(-5)" title="click to decrease font size">A-</button>
+                        </section>
+                        <section class="align-txt-btns">
+                            <button class="btn-round" onclick="onChangeAlign('left')" title="click to align text to left"><i
+                                    class="fa-solid fa-align-left"></i></button>
+                            <button class="btn-round" onclick="onChangeAlign('center')" title="click to align text to center"><i
+                                    class="fa-solid fa-align-center"></i></button>
+                            <button class="btn-round" onclick="onChangeAlign('right')" title="click to align text to right"><i
+                                    class="fa-solid fa-align-right"></i></button>
+                        </section>
+
+                        <section>
+                            <button class="btn-round"><i class="fa-solid fa-palette"> <input type="color" name="" id=""
+                                        oninput="onChangeColor(this.value)" title="click to change color"></i></button>
+                            <button class="btn-round"><i class="fa-solid fa-font"> 
+                                <input type="search" name="" class="fonts" placeholder="Choose font"  oninput="onChangeFont(this.value)" list="fonts"></i></button>
+                                <datalist id="fonts">
+                                    <option value="montserrat">
+                                    <option value="playfair">
+                                    <option value="ubuntu">
+                                    <option value="inconsolata">
+                                  </datalist>
+                        </section>
+                    </div>
+
+                    <div class="emojis-container flex"> 
+                        <button onclick="onChangePage(-1)" class="btn-page prev"><i class="fa-solid fa-arrow-left"></i></button>
+                        <section class="emojis flex space-between "></section>
+                        <button onclick="onChangePage(1)" class="btn-page next"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+
+
+                    <section class="import-btns flex">                       
+                        <a href="#" onclick="onDownloadImg(this)" download="my-img.jpg">
+                                <button class="card-button btn-round btn-download"title="click to download">Download</button>
+                        </a>
+                        <button class="card-button btn-round" onclick="onUploadImg()" title="click to share on Facebook">Share</button>
+                        <button class="card-button btn-round" onclick="onSaveMemeData()" title="click to save to meme">Save</button>
+                    </section>
+
+                    <input class="image" type="file" class="file-input btn" name="image"
+                        onchange="onImgInput(event)" />
+                </section>
+            </div>
+            </div>
+        </main>
+    </main>
+
+    <!-- saved memes page -->
+    <main class="memes-page">
+        <h1>My Memes</h1>
+        <section class="saved-memes-container ">
+        </section>
+    </main>
+
+    <!-- msg-place -->
+
+<!-- footer place-->
+
+
+    
+
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/gallery.service.js"></script>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/language.controller.js"></script>
+    <script src="js/modal-menu.controller.js"></script>
+    <script src="js/meme.controller.js"></script>
+    <script src="js/gallery.controller.js"></script>
+</body>
+
+</html>

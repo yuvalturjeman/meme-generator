@@ -1,0 +1,5 @@
+.saved-memes-container img:hover{
+    box-shadow: 0 0 5px #3f4044, 0 0 25px #3f4044, 0 0 50px #3f4044, 0 0 200px #3f4044;
+    position: relative;
+ 
+ }

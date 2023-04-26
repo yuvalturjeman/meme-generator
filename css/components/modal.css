@@ -1,0 +1,26 @@
+.modal .close-button {
+    background-color: white;
+    border: none;
+    font-size: 40px;
+    color: var(--clrbase);
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 0.5em;
+  }
+
+  .modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .modal form > * {
+    padding: 0.3rem;
+  }
+  
+  .modal{
+    font-size: 25px;
+  }
+  

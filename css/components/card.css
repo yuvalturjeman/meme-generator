@@ -1,0 +1,67 @@
+.card .canvas-container {
+    height: 100%;
+  }
+  
+  .card > *:not(.canvas-container) {
+    grid-column: 2;
+  }
+  
+  .text-container .card-button {
+    flex-grow: 0;
+  }
+  
+  .card .btns-container {
+    margin-inline:auto;
+    align-self:flex-start;
+    width: 76%;
+  }
+
+  .card .text-features {
+    width: 100%;
+    align-self:flex-start;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    border-radius: 1em;
+  }
+
+  .card {
+    margin: 0 0 40px;
+  }
+
+  .card .card-input {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .card .card-input input{
+    height: 60px;
+    font-size: .75em;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid var(--clr7);
+    width: 100%;
+  }
+  
+  .card .card-button {
+    width: fit-content;
+    margin-block-start: auto;
+  
+    color: var(--clr2);
+
+  }
+  
+  .card .import-btns  {
+    width: 75%;
+    align-self: center;
+    justify-content: space-between;
+  }
+  
+  .card .emojis-container button:not(.emojis button){
+    font-size: 2em;
+    background-color: transparent;
+    border: transparent;
+  }
+  
+  
