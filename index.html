@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +20,12 @@
         <button class="close-button" onclick="onToggleModal()">x</button>
         <h1>Ultimate Meme Generator</h1>
         <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
         </p>
+        <input type="email" placeholder="youremail@gmail.com">
         <form class='form-modal' onsubmit="onToggleModal()">
             <label>About us</label>
         </form>
@@ -36,7 +39,7 @@
             <div type="button" class="toggle-menu" onclick="onToggleMenu()"></div>
             <nav class="main-nav clean-list">
                 <ul class="main-menu clean-list flex">
-                    <li><a href="#" onclick="onShowMemesPage()">Saved Memes</a></li>
+                    <li><a href="#" onclick="onShowSavedMemesPage()">Saved Memes</a></li>
                     <li><a href="#" onclick="onShowImgGallery()"> Gallery</a></li>
                     <li><a href="#" onclick="onToggleModal()">About</a></li>
                 </ul>
@@ -51,9 +54,6 @@
         </select>
     </section>
     </header>
-
-    
-
 
     <!-- Photos gallery page-->
     <main class="home-page">
@@ -91,7 +91,7 @@
     </main>
 
     <!-- meme editing page-->
-    <main class="meme-creating">
+    <main class="meme-design">
         <main class="main-content">
             <div class="card card-layout">
                 <div class="canvas-container">
@@ -105,9 +105,9 @@
                     </div>
                     <div class="text-features flex space-between">
                         <div class="btns-container flex space-between">
-                            <button class="up-down-btn btn-round" onclick="isIncreaseLineHt('true')" title="click to move line up"><i
+                            <button class="up-down-btn btn-round" onclick="onLineHeightChange(-10)" title="click to move line up"><i
                                     class="fa-solid fa-arrow-up"></i></button>
-                            <button class="up-down-btn btn-round" onclick="isDecreaseLineHt('true')" title="click to move line down"><i
+                            <button class="up-down-btn btn-round" onclick="onLineHeightChange(10)" title="click to move line down"><i
                                     class="fa-solid fa-arrow-down"></i></button>
                             <button class="up-down-btn btn-round" onclick="onSwitchLine()" title="click to switch line"><i
                                     class="fa-solid fa-arrows-up-down"></i></button>
@@ -118,8 +118,8 @@
                         </div>
 
                         <section class="change-size-btns">
-                            <button class="increaseSize-btn btn-round" onclick="onSetFont(5)" title="click to increase font size" >A+</a></button>
-                            <button class="decreaseSize-btn btn-round" onclick="onSetFont(-5)" title="click to decrease font size">A-</button>
+                            <button class="increaseSize-btn btn-round" onclick="onSetFont(10)" title="click to increase font size" >A+</a></button>
+                            <button class="decreaseSize-btn btn-round" onclick="onSetFont(-10)" title="click to decrease font size">A-</button>
                         </section>
                         <section class="align-txt-btns">
                             <button class="btn-round" onclick="onChangeAlign('left')" title="click to align text to left"><i
@@ -156,7 +156,7 @@
                                 <button class="card-button btn-round btn-download"title="click to download">Download</button>
                         </a>
                         <button class="card-button btn-round" onclick="onUploadImg()" title="click to share on Facebook">Share</button>
-                        <button class="card-button btn-round" onclick="onSaveMemeData()" title="click to save to meme">Save</button>
+                        <button class="card-button btn-round" onclick="onSaveMeme()" title="click to save to meme">Save</button>
                     </section>
 
                     <input class="image" type="file" class="file-input btn" name="image"
@@ -168,13 +168,18 @@
     </main>
 
     <!-- saved memes page -->
-    <main class="memes-page">
+    <main class="saved-memes-page">
         <h1>My Memes</h1>
         <section class="saved-memes-container ">
         </section>
     </main>
 
     <!-- msg-place -->
+    <div class="flash-msg" >
+        <h1>
+            Meme saved successfully! <i class="fa-regular fa-floppy-disk"></i>
+        </h1>  
+    </div>
 
 <!-- footer place-->
 
@@ -185,9 +190,11 @@
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/gallery.service.js"></script>
     <script src="js/services/meme.service.js"></script>
+    <script src="js/event-listener.controller.js"></script>
     <script src="js/language.controller.js"></script>
     <script src="js/modal-menu.controller.js"></script>
     <script src="js/meme.controller.js"></script>
+    <script src="js/saved-memes.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
 </body>
 
