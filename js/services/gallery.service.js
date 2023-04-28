@@ -9,9 +9,7 @@ function filterImgs(keyword) {
       if (img.keywords.includes(`${keyword}`)) {
         counter++
         if (counter === 1) {
-          gKeywordSearchCountMap[keyword]
-            ? gKeywordSearchCountMap[keyword]++
-            : (gKeywordSearchCountMap[keyword] = 1)
+          gKeywordSearchCountMap[keyword] = (gKeywordSearchCountMap[keyword]) ? gKeywordSearchCountMap[keyword]++ : 1
         }
         acc.push(img)
       }
