@@ -145,22 +145,13 @@
     opacity: 0;
     transition: opacity 0.6s;
     display: flex;
-    box-shadow: -16px 9px 13px 11px #29292996;
     flex-direction: column;
-    padding: 50px;
     position: fixed;
-    z-index: 2;
     justify-content: center;
     align-items: center;
-    width: fit-content;
     border: #1d1d1d 1px solid;
     background-color: white;
   }
-
-  .nav button {
-    display: none;
-  }
-
   .card .editor {
     flex-direction: column;
     align-items: flex-start;
@@ -168,11 +159,8 @@
     width: 600px;
     border-radius: 3em;
   }
-
-
-
 }
-/* LARGE */
+
 
 @media (min-width: 1110px) {
   :root {
@@ -195,7 +183,6 @@
 
   .card .canvas-container {
     grid-row: 1;
-
   }
 
   .card .editor {
@@ -207,3 +194,4 @@
     justify-content: space-between;
   }
 }
+
