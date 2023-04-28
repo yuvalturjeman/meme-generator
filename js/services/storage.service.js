@@ -14,10 +14,13 @@ function loadImageFromInput(ev, onImageReady) {
   }
 
 
-  function loadToStorage(key,val) {
+  function saveToStorage(key,val) {
     localStorage.setItem(key, JSON.stringify(val))
   }
-  
-  function loadFromStorage(key) {
-    return JSON.parse(localStorage.getItem(key))
+
+    function saveMeme() {
+    const memeInfo = getMeme()
+    let memesInfo = loadFromStorage(STORAGE_KEY1)
+    memesInfo = (!memesInfo) ? [memeInfo] : memesInfo.push(memeInfo)
+    saveToStorage(STORAGE_KEY1, memesInfo)
   }
