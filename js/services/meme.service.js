@@ -1,7 +1,9 @@
-
+'use strict'
 const gEmojis = ['🤣', '🥸', '😅', '🥴', '🥹', '😫', '😤', '🤪', '😵‍💫', '😨']
-let gPageIdx = 0
-
+var gPageIdx = 0
+var gCtx
+var gCurrShape = 'rect'
+var gMemes
 const PAGE_SIZE = 3
 var gKeywordSearchCountMap = {
   funny: 1,
@@ -18,8 +20,8 @@ var gKeywordSearchCountMap = {
   surprise: 1,
   creepy: 1,
   awkward: 1,
-
 } 
+
 var gImgs = [
   { id: 1, url: 'meme-imgs (square)/1.jpg', keywords: ['funny', 'politics'] },
   { id: 2, url: 'meme-imgs (square)/2.jpg', keywords: ['cute', 'dog'] },
@@ -73,9 +75,7 @@ function resetMeme() {
   }
 }
 
-function getKeywords() {
-  return gKeywordSearchCountMap
-}
+
 
 function setMeme(ImgId, lineIdx, allLines) {
   gMeme = {
@@ -90,9 +90,7 @@ function setImg(id) {
   gMeme.selectedImgId = id
 }
 
-function getMeme() {
-  return gMeme
-}
+
 
 function setLineTxt(newTxt) {
   gMeme.lines[gMeme.selectedLineIdx].txt = newTxt
@@ -152,8 +150,7 @@ function isLineClicked(clickedPos) {
   const line = getCurrLine()
   const metrics = gCtx.measureText(line.txt)
   const txtWidth = metrics.width
-  const fontHeight =
-    metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent
+  const fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent
 
   const { x, y } = line
 
@@ -186,6 +183,7 @@ function moveLine(dx, dy) {
 }
 
 function randomMeme() {
+  console.log('randommemem');
   gMeme.selectedImgId = getRandomIntInclusive(1, gImgs.length - 1)
   if (Math.random() > 0.5) {
     addLine()
@@ -225,4 +223,12 @@ function getLine(idx) {
 
 function getCurrLine() {
   return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function getMeme() {
+  return gMeme
+}
+
+function getKeywords() {
+  return gKeywordSearchCountMap
 }
