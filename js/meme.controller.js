@@ -27,7 +27,7 @@ function renderMeme() {
   }
 }
 
-function drawText(text, color, size, font = 'ubuntu', align, lineIdx) {
+function drawText(text, color, size, font = 'times', align, lineIdx) {
   const meme = getMeme()
   gCtx.lineWidth = 1
   gCtx.strokeStyle = `white`
@@ -109,7 +109,7 @@ function onSelectedMeme(memeInfo) {
 
 function changeInputTxt() {
   const txt = getLineTxt()
-  documentActions('.txt', 'value', txt)
+  document.querySelector('.txt').value = txt
 }
 
 function onSetLineTxt(txt) {
@@ -226,9 +226,16 @@ function renderImg(img) {
   gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
+
+
+
+
+
 function onUp() {
   setLineDrag(false)
 }
+
+
 
 function showMemeDesignPage() {
   documentActions('.home-page', 'hidden',  true)
@@ -280,7 +287,7 @@ function renderEmojis() {
   let strHTML = []
   const emojis = getEmojis()
   emojis.map(emoji => strHTML.push(`<button onclick="OnAddEmoji(this)">${emoji}</button>`))
-  documentActions('.emojis', 'innerHTML', strHTML.join(' '))
+  document.querySelector('.emojis').innerHTML = strHTML.join(' ')
 }
 
 function disableButton(btn) {
@@ -309,6 +316,11 @@ function addEmoji(elBtn) {
   })
 }
 
+// hide the meme drawer /////
+function hideMemeDesignPage() {
+  documentActions('.meme-design', 'hidden',  true)
+} 
+
 // move through the emoji pages////////////
 function changePage(num) {
   gPageIdx += num
@@ -336,4 +348,3 @@ function getImageById(imgId) {
 function getImages() {
   return gImgs
 }
-
