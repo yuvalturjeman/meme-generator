@@ -1,23 +1,17 @@
-let gMemes
-let gElCanvas
-let gCtx
-let gCurrShape = 'rect'
-let isDecreaseLineHeight = false
-let isIncreaseLineHeight = false
+'use strict'
+
+var gElCanvas
+
+
 const MEMES_DB = 'memes'
-let gStartPos
-const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 function onInit() {
   onShowImgGallery()
-  // setLanguage()
+  
   gElCanvas = document.querySelector('#my-canvas')
   gCtx = gElCanvas.getContext('2d')
   addListeners()
 }
-
-
-
 
 function renderMeme() {
   const meme = getMeme()
@@ -29,14 +23,11 @@ function renderMeme() {
     gMeme.lines.forEach((line, idx) =>
       drawText(line.txt, line.color, line.size, meme.font, line.align, idx)
     )
-    isDecreaseLineHeight = false
-    isIncreaseLineHeight = false
-
     changeInputTxt()
   }
 }
 
-function drawText(text, color, size, font = 'times', align, lineIdx) {
+function drawText(text, color, size, font = 'ubuntu', align, lineIdx) {
   const meme = getMeme()
   gCtx.lineWidth = 1
   gCtx.strokeStyle = `white`
@@ -52,28 +43,18 @@ function drawText(text, color, size, font = 'times', align, lineIdx) {
 }
 
 
-function isDecreaseLineHt(bool) {
-  isDecreaseLineHeight = bool
+function onLineHeightChange(diff) {
   const meme = getMeme()
   const lineIdx = meme.selectedLineIdx
+  const line = getLine(lineIdx)
+  line.diff += diff
   setTxtPos(lineIdx)
   renderMeme()
 }
 
-function isIncreaseLineHt(bool) {
-  isIncreaseLineHeight = bool
-  const meme = getMeme()
-  const lineIdx = meme.selectedLineIdx
-  setTxtPos(lineIdx)
-  renderMeme()
-}
 
 function setTxtPos(lineIdx) {
   const line = getLine(lineIdx)
-
-  if (isDecreaseLineHeight) line.diff += 10
-  if (isIncreaseLineHeight) line.diff += -10
-
   switch (lineIdx) {
     case 0:
       line.x = 50
@@ -116,26 +97,11 @@ function setTxtPos(lineIdx) {
   }
 }
 
-function renderMemesPage() {
-  let strHtml = []
-  gMemes = loadFromStorage(STORAGE_KEY)
-  const memesInfo = loadFromStorage(STORAGE_KEY1)
-  if (Array.isArray(gMemes)) {
-    gMemes.map((meme, idx) => {
-      strHtml.push(`<img src="${meme}" onclick="onSelectedMeme('${encodeURIComponent(JSON.stringify(memesInfo[idx]))}')">`);
-    })
-  } else {
-    console.log('not array')
-    strHtml.push('<h3>no saved memes</h3>')
-  }
-  document.querySelector('.saved-memes-container').innerHTML = strHtml.join('')
-}
-
 function onSelectedMeme(memeInfo) {
   const meme = JSON.parse(decodeURIComponent(memeInfo));
   const { selectedImgId: imgId, selectedLineIdx: lineIdx, lines } = meme;
-  showMemeDrawerPage();
-  hideMemesPage();
+  showMemeDesignPage();
+  documentActions('.saved-memes-page', 'hidden',  true)
   setMeme(imgId, lineIdx, lines);
   setImg(imgId);
   renderMeme();
@@ -143,7 +109,7 @@ function onSelectedMeme(memeInfo) {
 
 function changeInputTxt() {
   const txt = getLineTxt()
-  document.querySelector('.txt').value = txt
+  documentActions('.txt', 'value', txt)
 }
 
 function onSetLineTxt(txt) {
@@ -259,142 +225,70 @@ function onImgInput(ev) {
 function renderImg(img) {
   gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
-function getEvPos(ev) {
-  let pos = {
-    x: ev.offsetX,
-    y: ev.offsetY,
-  }
-  // Check if its a touch ev
-  if (TOUCH_EVS.includes(ev.type)) {
-    //soo we will not trigger the mouse ev
-    ev.preventDefault()
-    //Gets the first touch point
-    ev = ev.changedTouches[0]
-    //Calc the right pos according to the touch screen
-    pos = {
-      x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-      y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
-    }
-  }
-  return pos
-}
-
-function onDown(ev) {
-  // Get the ev pos from mouse or touch
-  const pos = getEvPos(ev)
-  console.log('pos', pos)
-  if (!isLineClicked(pos)) return
-
-  setLineDrag(true)
-  gStartPos = pos
-  document.body.style.cursor = 'grabbing'
-}
-
-function onMove(ev) {
-  const { isDrag } = getCurrLine()
-
-  if (!isDrag) return
-
-  const pos = getEvPos(ev)
-  const dx = pos.x - gStartPos.x
-  const dy = pos.y - gStartPos.y
-  moveLine(dx, dy)
-  gStartPos = pos
-  renderMeme()
-}
 
 function onUp() {
   setLineDrag(false)
-  document.body.style.cursor = 'grab'
 }
 
-function addListeners() {
-  addMouseListeners()
-  addTouchListeners()
+function showMemeDesignPage() {
+  documentActions('.home-page', 'hidden',  true)
+  documentActions('.saved-memes-page', 'hidden',  true)
+  renderEmojis()
+  documentActions('.meme-design', 'hidden',  false)
+  resetMeme()
 }
 
-function addMouseListeners() {
-  gElCanvas.addEventListener('mousedown', onDown)
-  gElCanvas.addEventListener('mousemove', onMove)
-  gElCanvas.addEventListener('mouseup', onUp)
-}
-
-function addTouchListeners() {
-  gElCanvas.addEventListener('touchstart', onDown)
-  gElCanvas.addEventListener('touchmove', onMove)
-  gElCanvas.addEventListener('touchend', onUp)
+function onRandomMeme() {
+  showMemeDesignPage()
+  randomMeme()
+  renderMeme()
 }
 
 function onSaveMeme() {
-  const memeInfo = getMeme()
-  let memesInfo = loadFromStorage(STORAGE_KEY1)
-  memesInfo = (!memesInfo) ? [memeInfo] : memesInfo.push(memeInfo)
-  loadToStorage(STORAGE_KEY1, memesInfo)
-}
-
-function onSaveMemeData() {
   const elFlashMsg = document.querySelector('.flash-msg')
+  // elFlashMsg.style.hidden = false
   elFlashMsg.style.translate = '0'
   elFlashMsg.style.opacity = '1'
   setTimeout(() => {
+    // elFlashMsg.style.hidden = true
     elFlashMsg.style.translate = '0 100%'
     elFlashMsg.style.opacity = '0'
 
   }, 2000);
   const meme = gElCanvas.toDataURL()
   let memes = loadFromStorage(STORAGE_KEY)
-  console.log('memes', memes)
-  !memes ? memes = [meme] : memes.push(meme)
-  loadToStorage(STORAGE_KEY, memes)
-  onSaveMeme()
+
+   memes = (!memes) ? [meme] : memes.push(meme)
+  saveToStorage(STORAGE_KEY, memes)
+  saveMeme()
 }
 
-function onShowMemesPage() {
-  hideGallery()
-  hideMemeDrawerPage()
-  renderMemesPage()
-  documentActions('.memes-page', 'hidden',  false)
+function saveMeme() {
+  const memeInfo = getMeme()
+  let memesInfo = loadFromStorage(STORAGE_KEY1) || []
+  
+  if (memesInfo.length >= 50) {
+    memesInfo.shift() // remove oldest meme
+  }
+  
+  memesInfo.push(memeInfo)
+  saveToStorage(STORAGE_KEY1, memesInfo)
 }
 
-function showMemeDrawerPage() {
-  hideGallery()
-  hideMemesPage()
-  renderEmojis()
-  documentActions('.meme-creating', 'hidden',  false)
-  resetMeme()
-}
-
-function hideMemeDrawerPage() {
-  documentActions('.meme-creating', 'hidden',  true)
-}
-
-function hideMemesPage() {
-  documentActions('.memes-page', 'hidden',  true)
-}
-
-function onRandomMeme() {
-  showMemeDrawerPage()
-  randomMeme()
-  renderMeme()
-}
-
+// emojies ///////
 function renderEmojis() {
   let strHTML = []
   const emojis = getEmojis()
   emojis.map(emoji => strHTML.push(`<button onclick="OnAddEmoji(this)">${emoji}</button>`))
-  document.querySelector('.emojis').innerHTML = strHTML.join(' ')
+  documentActions('.emojis', 'innerHTML', strHTML.join(' '))
 }
 
-
-
 function disableButton(btn) {
-
   if (btn === 'next') {
     documentActions('.next', 'disbled',  true)
-    documentActions('.prev', 'disbled',  false)
+
   } else if (btn === 'prev') {
     documentActions('.prev', 'disbled',  true)
-    documentActions('.next', 'disbled',  false)
   }
   else {
     documentActions('.prev', 'disbled', false)
@@ -402,6 +296,7 @@ function disableButton(btn) {
   }
 }
 
+// add emoji to the img
 function addEmoji(elBtn) {
   gMeme.lines.push({
     txt: `${elBtn.innerText}`,
@@ -414,6 +309,7 @@ function addEmoji(elBtn) {
   })
 }
 
+// move through the emoji pages////////////
 function changePage(num) {
   gPageIdx += num
   if (gPageIdx * PAGE_SIZE + PAGE_SIZE > gEmojis.length) {
@@ -427,9 +323,17 @@ function setText() {
   document.querySelector('.txt').value = txt
 }
 
-function documentActions(elName, action,  value) {
-  const elSelector = document.querySelector(elName)
-  elSelector[action] = value
+
+function getFilterImgs() {
+  return gFilteredImgs
 }
 
+function getImageById(imgId) {
+  let img = gImgs.find((img) => img.id === imgId)
+  return img
+}
+
+function getImages() {
+  return gImgs
+}
 
