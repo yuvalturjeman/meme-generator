@@ -226,16 +226,9 @@ function renderImg(img) {
   gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 
-
-
-
-
-
 function onUp() {
   setLineDrag(false)
 }
-
-
 
 function showMemeDesignPage() {
   documentActions('.home-page', 'hidden',  true)
@@ -315,11 +308,6 @@ function addEmoji(elBtn) {
     y: gElCanvas.width / 2,
   })
 }
-
-// hide the meme drawer /////
-function hideMemeDesignPage() {
-  documentActions('.meme-design', 'hidden',  true)
-} 
 
 // move through the emoji pages////////////
 function changePage(num) {
