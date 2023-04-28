@@ -9,6 +9,8 @@
   .text-container .card-button {
     flex-grow: 0;
   }
+
+  
   
   .card .btns-container {
     margin-inline:auto;
@@ -52,16 +54,15 @@
 
   }
   
-  .card .import-btns  {
+  /* .card .import-btns  {
     width: 75%;
     align-self: center;
     justify-content: space-between;
-  }
+  } */
   
   .card .emojis-container button:not(.emojis button){
     font-size: 2em;
     background-color: transparent;
     border: transparent;
   }
-  
   
