@@ -30,8 +30,3 @@ function renderSavedMemesPage() {
     renderSavedMemesPage()
     documentActions('.saved-memes-page', 'hidden',  false)
   }
-
-  // hide saved memes page
-function hideSavedMemesPage() {
-  documentActions('.saved-memes-page', 'hidden',  true)
-}
