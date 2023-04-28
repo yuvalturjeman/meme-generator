@@ -16,23 +16,23 @@ function renderGallery() {
         (img) =>
           `<img src="meme-imgs (square)/${img.id}.jpg" onclick="onSelectedImg(${img.id})" />`
       )
-    document.querySelector('.gallery').innerHTML = strHTMLs.join('')
+      documentActions('.gallery','innerHTML',strHTMLs.join(''))
   }
   renderKeywords()
 }
 
 function onSelectedImg(id) {
-  showMemeDrawerPage()
-  hideGallery()
+  showMemeDesignPage()
+  documentActions('.home-page', 'hidden',  true)
   setImg(id)
   renderMeme()
 }
 
 function onShowImgGallery() {
-  renderGallery()
-  hideMemeDrawerPage()
-  hideMemesPage()
-  documentActions('.home-page', 'hidden',  false)
+  documentActions('.meme-design', 'hidden',  true)
+  documentActions('.saved-memes-page', 'hidden',  true)
+  showImgGallery()
+  
 }
 
 function onFilterImgs(keyword){
@@ -52,7 +52,7 @@ function renderKeywords(){
   }
 }
 
-function hideGallery() {
-  documentActions('.home-page', 'hidden',  true)
+function showImgGallery() {
+  renderGallery()
+  documentActions('.home-page', 'hidden',  false)
 }
-
