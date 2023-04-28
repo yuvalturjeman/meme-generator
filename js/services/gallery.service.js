@@ -1,10 +1,10 @@
 'use strict'
 
-let gFilteredImgs
+var gFilteredImgs
 
 
 function filterImgs(keyword) {
-    let counter = 0
+    var counter = 0
     gFilteredImgs = gImgs.reduce((acc, img) => {
       if (img.keywords.includes(`${keyword}`)) {
         counter++
