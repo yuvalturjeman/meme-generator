@@ -15,24 +15,25 @@
   .canvas-container  {
     width: 100%;
   }
-  
-   h3, h4, h5,h6 {
-    margin: 0 0 1em;
-  }
-
 
   h1{
     margin-block-start: 20px;
   }
   
+   h3, h4, h5,h6 {
+    margin: 0 0 1em;
+  }
+
   .card-input {
     font-size: 1.75em;
   }
   
    .saved-memes-container img {
     width:300px;
+
   }
   .saved-memes-container{
+        margin: 0;
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
@@ -58,6 +59,8 @@
     scale: 1.3;
   }
   
-  .meme-creating{
+  .meme-design{
     margin-block: auto;
   }
+
+
