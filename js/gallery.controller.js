@@ -23,14 +23,14 @@ function renderGallery() {
 
 function onSelectedImg(id) {
   showMemeDesignPage()
-  hideImgGallery()
+  documentActions('.home-page', 'hidden',  true)
   setImg(id)
   renderMeme()
 }
 
 function onShowImgGallery() {
-  hideMemeDesignPage()
-  hideSavedMemesPage()
+  documentActions('.meme-design', 'hidden',  true)
+  documentActions('.saved-memes-page', 'hidden',  true)
   showImgGallery()
   
 }
@@ -50,10 +50,6 @@ function renderKeywords(){
   for (let key in keywordsMap) {
     document.querySelector(`.search-by-keywords .${key}`).style.fontSize = `calc(1em + 4*${keywordsMap[key]}px)`
   }
-}
-
-function hideImgGallery() {
-  documentActions('.home-page', 'hidden',  true)
 }
 
 function showImgGallery() {
