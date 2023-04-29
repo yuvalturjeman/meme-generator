@@ -1,6 +1,22 @@
 'use strict'
 
 var gFilteredImgs
+var gKeywordSearchCountMap = {
+  funny: 1,
+  dog: 1,
+  politics: 1,
+  cute: 1,
+  baby: 1,
+  dog: 1,
+  sleep: 1,
+  cat: 1,
+  happy: 1,
+  man: 1,
+  confused: 1,
+  surprise: 1,
+  creepy: 1,
+  awkward: 1,
+} 
 
 
 function filterImgs(keyword) {
