@@ -1,5 +1,12 @@
 'use strict'
 
+function onInit() {
+  onShowImgGallery()
+  gElCanvas = document.querySelector('#my-canvas')
+  gCtx = gElCanvas.getContext('2d')
+  addListeners()
+}
+
 function renderGallery() {
   if (!getFilterImgs() || !getFilterImgs().length){
     const images= getImages() 
