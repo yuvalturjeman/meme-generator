@@ -2,25 +2,8 @@
 const gEmojis = ['🤣', '🥸', '😅', '🥴', '🥹', '😫', '😤', '🤪', '😵‍💫', '😨']
 var gPageIdx = 0
 var gCtx
-var gCurrShape = 'rect'
 var gMemes
 const PAGE_SIZE = 3
-var gKeywordSearchCountMap = {
-  funny: 1,
-  dog: 1,
-  politics: 1,
-  cute: 1,
-  baby: 1,
-  dog: 1,
-  sleep: 1,
-  cat: 1,
-  happy: 1,
-  man: 1,
-  confused: 1,
-  surprise: 1,
-  creepy: 1,
-  awkward: 1,
-} 
 
 var gImgs = [
   { id: 1, url: 'meme-imgs (square)/1.jpg', keywords: ['funny', 'politics'] },
@@ -36,8 +19,8 @@ var gImgs = [
   { id: 11, url: 'meme-imgs (square)/11.jpg', keywords: ['man', 'awkward'] },
   { id: 12, url: 'meme-imgs (square)/12.jpg', keywords: ['man', 'famous'] },
   { id: 13, url: 'meme-imgs (square)/13.jpg', keywords: ['man', 'famous'] },
-
 ]
+
 var gMeme = {
   selectedImgId: 5,
   selectedLineIdx: 0,
@@ -75,22 +58,17 @@ function resetMeme() {
   }
 }
 
-
-
 function setMeme(ImgId, lineIdx, allLines) {
   gMeme = {
     selectedImgId: ImgId,
     selectedLineIdx: lineIdx,
     lines: allLines,
   }
-  console.log('gMeme', gMeme)
 }
 
 function setImg(id) {
   gMeme.selectedImgId = id
 }
-
-
 
 function setLineTxt(newTxt) {
   gMeme.lines[gMeme.selectedLineIdx].txt = newTxt
@@ -128,11 +106,9 @@ function changeAlign(align) {
       if (gMeme.selectedLineIdx === 0) line.x = 50
       else line.x = 150
       break
-
     case 'right':
       line.x = gElCanvas.height - txtWidth
       break
-
     default:
       line.x = gElCanvas.height / 2 - txtWidth / 2
       break
@@ -151,7 +127,6 @@ function isLineClicked(clickedPos) {
   const metrics = gCtx.measureText(line.txt)
   const txtWidth = metrics.width
   const fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent
-
   const { x, y } = line
 
   if (
@@ -183,7 +158,6 @@ function moveLine(dx, dy) {
 }
 
 function randomMeme() {
-  console.log('randommemem');
   gMeme.selectedImgId = getRandomIntInclusive(1, gImgs.length - 1)
   if (Math.random() > 0.5) {
     addLine()
@@ -194,35 +168,6 @@ function randomMeme() {
     line.size = getRandomIntInclusive(30, 45)
     line.color = getRandomColor()
   })
-}
-
-function changeFontName(fontName) {
-  gMeme.font = fontName
-}
-
-function setColor(newColor) {
-  gMeme.lines[gMeme.selectedLineIdx].color = newColor
-}
-function changeFontSize(diff) {
-  gMeme.lines[gMeme.selectedLineIdx].size += diff
-}
-
-function getEmojis() {
-  const startIdx = gPageIdx * PAGE_SIZE
-  return gEmojis.slice(startIdx, startIdx + 3)
-}
-
-function getLineTxt() {
-  const idx = gMeme.selectedLineIdx
-  return gMeme.lines[idx].txt
-}
-
-function getLine(idx) {
-  return gMeme.lines[idx]
-}
-
-function getCurrLine() {
-  return gMeme.lines[gMeme.selectedLineIdx]
 }
 
 function getMeme() {
