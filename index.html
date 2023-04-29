@@ -42,7 +42,7 @@
         <!-- lang control-->
         <section class="lang-selector">
             <!-- onSetLang(this.value) -->
-            <select onchange="onSetLang(lang)">
+            <select onchange="onSetLang(this.value)">
                 <option value="en">English</option>
                 <option value="he">עברית</option>
             </select>
@@ -54,30 +54,12 @@
 
         <section class="search-bar">
             <label for="img-search">Search:
-                <input id="img-search" type="search" placeholder="Choose\type a word" oninput="onFilterImgs(this.value)"
+                <input id="img-search" type="search" placeholder="type a word" oninput="onFilterImgs(this.value)"
                     list="keywords">
             </label>
             <button data-trans="flexible" class="btn-generate button btn-round" onclick="onRandomMeme()">I'm
                 flexible</button>
 
-
-            <!-- generate this in javascript -->
-            <datalist id="keywords">
-                <option data-trans="option1" value="funny">
-                <option data-trans="option2" value="politics">
-                <option data-trans="option3" value="cute">
-                <option data-trans="option4" value="dog">
-                <option data-trans="option5" value="baby">
-                <option data-trans="option6" value="sleep">
-                <option data-trans="option7" value="cat">
-                <option data-trans="option8" value="happy">
-                <option data-trans="option9" value="confused">
-                <option data-trans="option10" value="surprise">
-                <option data-trans="option11" value="creepy">
-                <option data-trans="option12" value="awkward">
-                <option data-trans="option13" value="famous">
-
-            </datalist>
         </section>
         <ul class="search-by-keywords clean-list flex">
         </ul>
@@ -184,7 +166,7 @@
         </h1>
     </div>
     <!-- footer place-->
-    
+
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/gallery.service.js"></script>
