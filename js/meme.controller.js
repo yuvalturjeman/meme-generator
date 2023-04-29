@@ -246,17 +246,17 @@ function onRandomMeme() {
 
 function onSaveMeme() {
   const elFlashMsg = document.querySelector('.flash-msg')
-  // elFlashMsg.style.hidden = false
+  elFlashMsg.style.hidden = false
   elFlashMsg.style.translate = '0'
   elFlashMsg.style.opacity = '1'
   setTimeout(() => {
-    // elFlashMsg.style.hidden = true
+    elFlashMsg.style.hidden = true
     elFlashMsg.style.translate = '0 100%'
     elFlashMsg.style.opacity = '0'
 
   }, 2000);
   const meme = gElCanvas.toDataURL()
-  let memes = loadFromStorage(STORAGE_KEY)
+  var memes = loadFromStorage(STORAGE_KEY)
 
    memes = (!memes) ? [meme] : memes.push(meme)
   saveToStorage(STORAGE_KEY, memes)
@@ -265,22 +265,17 @@ function onSaveMeme() {
 
 function saveMeme() {
   const memeInfo = getMeme()
-  let memesInfo = loadFromStorage(STORAGE_KEY1) || []
-  
-  if (memesInfo.length >= 50) {
-    memesInfo.shift() // remove oldest meme
-  }
-  
-  memesInfo.push(memeInfo)
+  var memesInfo = loadFromStorage(STORAGE_KEY1) 
+  memesInfo = (!memesInfo) ? [memeInfo] : memesInfo.push(memeInfo)
   saveToStorage(STORAGE_KEY1, memesInfo)
 }
 
 // emojies ///////
 function renderEmojis() {
-  let strHTML = []
+  var strHTML = []
   const emojis = getEmojis()
   emojis.map(emoji => strHTML.push(`<button onclick="OnAddEmoji(this)">${emoji}</button>`))
-  document.querySelector('.emojis').innerHTML = strHTML.join(' ')
+  documentActions('.emojis', 'innerHTML',strHTML.join(' ') )
 }
 
 function disableButton(btn) {
