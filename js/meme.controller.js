@@ -1,17 +1,6 @@
 'use strict'
 
-var gElCanvas
 
-
-const MEMES_DB = 'memes'
-
-function onInit() {
-  onShowImgGallery()
-  
-  gElCanvas = document.querySelector('#my-canvas')
-  gCtx = gElCanvas.getContext('2d')
-  addListeners()
-}
 
 function renderMeme() {
   const meme = getMeme()
@@ -27,81 +16,11 @@ function renderMeme() {
   }
 }
 
-function drawText(text, color, size, font = 'times', align, lineIdx) {
-  const meme = getMeme()
-  gCtx.lineWidth = 1
-  gCtx.strokeStyle = `white`
-  gCtx.fillStyle = `${color}`
-  gCtx.font = `${size}px ${font}`
-  gCtx.textAlign = `${align}`
-  gCtx.textBaseline = 'middle'
-
-  const x = meme.lines[lineIdx].x
-  const y = meme.lines[lineIdx].y
-  gCtx.fillText(text, x, y)
-  gCtx.strokeText(text, x, y)
-}
-
-
-function onLineHeightChange(diff) {
-  const meme = getMeme()
-  const lineIdx = meme.selectedLineIdx
-  const line = getLine(lineIdx)
-  line.diff += diff
-  setTxtPos(lineIdx)
-  renderMeme()
-}
-
-
-function setTxtPos(lineIdx) {
-  const line = getLine(lineIdx)
-  switch (lineIdx) {
-    case 0:
-      line.x = 50
-      line.y = 50 + line.diff
-      if (line.y < 50) {
-        line.y = 50
-        line.diff = 0
-      }
-      else if (line.y >= gElCanvas.height - 50) {
-        line.y = gElCanvas.height - 50
-        line.diff = 0
-      }
-      break
-
-    case 1:
-      line.x = 150
-      line.y = gElCanvas.height - 50 + line.diff
-      if (line.y < 50) {
-        line.y = 50
-        line.diff = 0
-      }
-      else if (line.y >= gElCanvas.height - 50) {
-        line.y = gElCanvas.height - 50
-        line.diff = 0
-      }
-      break
-
-    default:
-      line.x = gElCanvas.width / 2
-      line.y = gElCanvas.height / 2 + line.diff
-      if (line.y < 50) {
-        line.y = 50
-        line.diff = 0
-      }
-      else if (line.y >= gElCanvas.height - 50) {
-        line.y = gElCanvas.height - 50
-        line.diff = 0
-      }
-      break
-  }
-}
-
 function onSelectedMeme(memeInfo) {
   const meme = JSON.parse(decodeURIComponent(memeInfo));
   const { selectedImgId: imgId, selectedLineIdx: lineIdx, lines } = meme;
   showMemeDesignPage();
-  documentActions('.saved-memes-page', 'hidden',  true)
+  documentActions('.saved-memes-page', 'hidden', true)
   setMeme(imgId, lineIdx, lines);
   setImg(imgId);
   renderMeme();
@@ -231,10 +150,10 @@ function onUp() {
 }
 
 function showMemeDesignPage() {
-  documentActions('.home-page', 'hidden',  true)
-  documentActions('.saved-memes-page', 'hidden',  true)
+  documentActions('.home-page', 'hidden', true)
+  documentActions('.saved-memes-page', 'hidden', true)
   renderEmojis()
-  documentActions('.meme-design', 'hidden',  false)
+  documentActions('.meme-design', 'hidden', false)
   resetMeme()
 }
 
@@ -244,80 +163,25 @@ function onRandomMeme() {
   renderMeme()
 }
 
-function onSaveMeme() {
-  const elFlashMsg = document.querySelector('.flash-msg')
-  elFlashMsg.style.hidden = false
-  elFlashMsg.style.translate = '0'
-  elFlashMsg.style.opacity = '1'
-  setTimeout(() => {
-    elFlashMsg.style.hidden = true
-    elFlashMsg.style.translate = '0 100%'
-    elFlashMsg.style.opacity = '0'
-
-  }, 2000);
-  const meme = gElCanvas.toDataURL()
-  var memes = loadFromStorage(STORAGE_KEY)
-
-   memes = (!memes) ? [meme] : memes.push(meme)
-  saveToStorage(STORAGE_KEY, memes)
-  saveMeme()
-}
-
-function saveMeme() {
-  const memeInfo = getMeme()
-  var memesInfo = loadFromStorage(STORAGE_KEY1) 
-  memesInfo = (!memesInfo) ? [memeInfo] : memesInfo.push(memeInfo)
-  saveToStorage(STORAGE_KEY1, memesInfo)
-}
-
 // emojies ///////
 function renderEmojis() {
   var strHTML = []
   const emojis = getEmojis()
   emojis.map(emoji => strHTML.push(`<button onclick="OnAddEmoji(this)">${emoji}</button>`))
-  documentActions('.emojis', 'innerHTML',strHTML.join(' ') )
-}
-
-function disableButton(btn) {
-  if (btn === 'next') {
-    documentActions('.next', 'disbled',  true)
-
-  } else if (btn === 'prev') {
-    documentActions('.prev', 'disbled',  true)
-  }
-  else {
-    documentActions('.prev', 'disbled', false)
-    documentActions('.next', 'disbled',  false)
-  }
-}
-
-// add emoji to the img
-function addEmoji(elBtn) {
-  gMeme.lines.push({
-    txt: `${elBtn.innerText}`,
-    size: 50,
-    align: 'center',
-    color: 'black',
-    diff: 0,
-    x: gElCanvas.height / 2,
-    y: gElCanvas.width / 2,
-  })
+  documentActions('.emojis', 'innerHTML', strHTML.join(' '))
 }
 
 // move through the emoji pages////////////
-function changePage(num) {
-  gPageIdx += num
-  if (gPageIdx * PAGE_SIZE + PAGE_SIZE > gEmojis.length) {
-    disableButton('next')
-  } else if (!gPageIdx) disableButton('prev')
-  else disableButton('none')
+function changePage(pageNum) {
+  console.log(gPageIdx);
+  gPageIdx += pageNum
+  if (gPageIdx * PAGE_SIZE === gEmojis.length - 1) gPageIdx = 0
 }
 
 function setText() {
   txt = getLineTxt()
   document.querySelector('.txt').value = txt
 }
-
 
 function getFilterImgs() {
   return gFilteredImgs
