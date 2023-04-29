@@ -13,14 +13,10 @@ function loadImageFromInput(ev, onImageReady) {
     reader.readAsDataURL(ev.target.files[0]) 
   }
 
-
-  function saveToStorage(key,val) {
-    localStorage.setItem(key, JSON.stringify(val))
+  function loadFromStorage(key) {
+    return JSON.parse(localStorage.getItem(key))
   }
 
-    function saveMeme() {
-    const memeInfo = getMeme()
-    let memesInfo = loadFromStorage(STORAGE_KEY1)
-    memesInfo = (!memesInfo) ? [memeInfo] : memesInfo.push(memeInfo)
-    saveToStorage(STORAGE_KEY1, memesInfo)
+  function saveToStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
   }
