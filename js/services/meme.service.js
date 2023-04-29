@@ -28,7 +28,7 @@ var gMeme = {
   lines: [
     {
       txt: makeMemesTxt(),
-      size: 40,
+      size: 30,
       align: 'left',
       color: 'black',
       diff: 0,
@@ -46,7 +46,7 @@ function resetMeme() {
     lines: [
       {
         txt: makeMemesTxt(),
-        size: 40,
+        size: 30,
         align: 'left',
         color: 'black',
         diff: 0,
