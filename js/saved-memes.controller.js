@@ -30,3 +30,32 @@ function renderSavedMemesPage() {
     renderSavedMemesPage()
     documentActions('.saved-memes-page', 'hidden',  false)
   }
+
+  function onSaveMeme() {
+    savedMemeMsg()
+    saveMeme()
+  }
+
+  function saveMeme() {
+    const meme = gElCanvas.toDataURL()
+    var memes = loadFromStorage(STORAGE_KEY)
+    memes = (memes && Array.isArray(memes)) ? [...memes, meme] : [meme]
+  
+    saveToStorage(STORAGE_KEY, memes)
+  
+    const memeInfo = getMeme()
+    var memesInfo = loadFromStorage(STORAGE_KEY1) 
+    memesInfo = (memesInfo && Array.isArray(memesInfo)) ? [...memesInfo, memeInfo] : [memeInfo] 
+    saveToStorage(STORAGE_KEY1, memesInfo)
+  }
+  
+  function savedMemeMsg() {
+    const elFlashMsg = document.querySelector('.save-meme-msg')
+    elFlashMsg.style.display = 'inline'
+    setTimeout(() => {
+      elFlashMsg.style.display = 'none'
+    }, 2000);
+  }
+  
+
+  
