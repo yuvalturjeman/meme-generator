@@ -16,7 +16,7 @@ function renderSavedMemesPage() {
     } else {
       strHtml.push('<h3>no saved memes</h3>')
     }
-    document.querySelector('.saved-memes-container').innerHTML = strHtml.join('')
+    documentActions('.saved-memes-container','innerHTML',strHtml.join(''))
   }
   // show saved memes////
   function onShowSavedMemesPage() {
