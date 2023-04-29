@@ -27,7 +27,7 @@ var gMeme = {
   font: 'Arial',
   lines: [
     {
-      txt: 'Change meme text',
+      txt: makeMemesTxt(),
       size: 40,
       align: 'left',
       color: 'black',
@@ -45,7 +45,7 @@ function resetMeme() {
     selectedLineIdx: 0,
     lines: [
       {
-        txt: 'Change meme text ',
+        txt: makeMemesTxt(),
         size: 40,
         align: 'left',
         color: 'black',
