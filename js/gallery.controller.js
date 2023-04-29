@@ -7,16 +7,14 @@ function renderGallery() {
       (img, idx) =>
         `<img src="meme-imgs (square)/${idx + 1}.jpg" onclick="onSelectedImg(${img.id})" />`
     )
-
-    document.querySelector('.gallery').innerHTML = strHTMLs.join('')
-    
+    documentActions('.gallery','innerHTML',strHTMLs.join(''))    
   } else {
     const images= getFilterImgs()
       const strHTMLs = images.map(
         (img) =>
           `<img src="meme-imgs (square)/${img.id}.jpg" onclick="onSelectedImg(${img.id})" />`
       )
-    document.querySelector('.gallery').innerHTML = strHTMLs.join('')
+      documentActions('.gallery','innerHTML',strHTMLs.join(''))
   }
   renderKeywords()
 }
@@ -41,14 +39,14 @@ function onFilterImgs(keyword){
 }
 
 function renderKeywords(){
-  let strHtml=''
+  let strHTML=''
   const keywordsMap= getKeywords() 
   for (const key in keywordsMap) {
-    strHtml+=`<li><a class="key ${key}" href="#" onclick="onFilterImgs('${key}')">${key}</a></li>`
+    strHTML+=`<li><a class="key ${key}" href="#" onclick="onFilterImgs('${key}')">${key}</a></li>`
   }
-  document.querySelector('.search-by-keywords').innerHTML = strHtml
+  documentActions('.search-by-keywords','innerHTML',strHTML)
   for (let key in keywordsMap) {
-    document.querySelector(`.search-by-keywords .${key}`).style.fontSize = `calc(1em + 4*${keywordsMap[key]}px)`
+    documentActions(`.search-by-keywords .${key}`,'style.fontSize',`calc(1em + 4*${keywordsMap[key]}px)`)
   }
 }
 
