@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Meme GeneraTur</title>
+    <title>Ultimate Meme Generator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://kit.fontawesome.com/95ea80fe76.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
@@ -19,12 +19,7 @@
     <div class="modal">
         <button class="close-button" onclick="onToggleModal()">x</button>
         <h1>Ultimate Meme Generator</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-        </p>
+        <p></p>
         <input type="email" placeholder="youremail@gmail.com">
         <form class='form-modal' onsubmit="onToggleModal()">
             <label>About us</label>
@@ -46,13 +41,13 @@
             </nav>
         </section>
         <!-- lang control-->
-    <section class="lang-selector"> 
-        <!-- onSetLang(this.value) -->
-        <select onchange=""> 
-            <option value="en">English</option>
-            <option value="he">עברית</option>
-        </select>
-    </section>
+        <section class="lang-selector">
+            <!-- onSetLang(this.value) -->
+            <select onchange="onSetLang(lang)">
+                <option value="en">English</option>
+                <option value="he">עברית</option>
+            </select>
+        </section>
     </header>
 
     <!-- Photos gallery page-->
@@ -60,28 +55,30 @@
 
         <section class="search-bar">
             <label for="img-search">Search:
-                <input id="img-search" type="search" placeholder="Choose\type a word" oninput="onFilterImgs(this.value)" list="keywords">
+                <input id="img-search" type="search" placeholder="Choose\type a word" oninput="onFilterImgs(this.value)"
+                    list="keywords">
             </label>
-            <button data-trans="flexible" class="btn-generate button btn-round" onclick="onRandomMeme()">I'm flexible</button>
+            <button data-trans="flexible" class="btn-generate button btn-round" onclick="onRandomMeme()">I'm
+                flexible</button>
 
 
             <!-- generate this in javascript -->
             <datalist id="keywords">
-                <option class="option1" data-trans="funny" value="funny">
-                <option class="option2" data-trans="politics" value="politics">
-                <option class="option3" data-trans="cute" value="cute">
-                <option class="option4" data-trans="dog" value="dog">
-                <option class="option5" data-trans="baby" value="baby">
-                <option class="option6" data-trans="sleep" value="sleep">
-                <option class="option7" data-trans="cat" value="cat">
-                <option class="option8" data-trans="happy" value="happy">
-                <option class="option9" data-trans="confused" value="confused">
-                <option class="option10" data-trans="funny" value="surprise">
-                <option class="option11" data-trans="surprise" value="creepy">
-                <option class="option12" data-trans="awkward" value="awkward">
-                <option class="option13" data-trans="famous" value="famous">
+                <option data-trans="option1" value="funny">
+                <option data-trans="option2" value="politics">
+                <option data-trans="option3" value="cute">
+                <option data-trans="option4" value="dog">
+                <option data-trans="option5" value="baby">
+                <option data-trans="option6" value="sleep">
+                <option data-trans="option7" value="cat">
+                <option data-trans="option8" value="happy">
+                <option data-trans="option9" value="confused">
+                <option data-trans="option10" value="surprise">
+                <option data-trans="option11" value="creepy">
+                <option data-trans="option12" value="awkward">
+                <option data-trans="option13" value="famous">
 
-              </datalist>
+            </datalist>
         </section>
         <ul class="search-by-keywords clean-list flex">
         </ul>
@@ -105,62 +102,69 @@
                     </div>
                     <div class="text-features flex space-between">
                         <div class="btns-container flex space-between">
-                            <button class="up-down-btn btn-round" onclick="onLineHeightChange(-10)" title="click to move line up"><i
-                                    class="fa-solid fa-arrow-up"></i></button>
-                            <button class="up-down-btn btn-round" onclick="onLineHeightChange(10)" title="click to move line down"><i
-                                    class="fa-solid fa-arrow-down"></i></button>
-                            <button class="up-down-btn btn-round" onclick="onSwitchLine()" title="click to switch line"><i
-                                    class="fa-solid fa-arrows-up-down"></i></button>
+                            <button class="up-down-btn btn-round" onclick="onLineHeightChange(-10)"
+                                title="click to move line up"><i class="fa-solid fa-arrow-up"></i></button>
+                            <button class="up-down-btn btn-round" onclick="onLineHeightChange(10)"
+                                title="click to move line down"><i class="fa-solid fa-arrow-down"></i></button>
+                            <button class="up-down-btn btn-round" onclick="onSwitchLine()"
+                                title="click to switch line"><i class="fa-solid fa-arrows-up-down"></i></button>
                             <button class="add-line-btn btn-round" onclick="onAddLine()" title="click to add a line"><i
                                     class="fa-solid fa-plus"></i></button>
-                            <button class="delete-line-btn btn-round" onclick="onDeleteLine()" title="click to delete the line"><i
-                                    class="fa-solid fa-trash-can"></i></button>
+                            <button class="delete-line-btn btn-round" onclick="onDeleteLine()"
+                                title="click to delete the line"><i class="fa-solid fa-trash-can"></i></button>
                         </div>
 
                         <section class="change-size-btns">
-                            <button class="increaseSize-btn btn-round" onclick="onSetFont(10)" title="click to increase font size" >A+</a></button>
-                            <button class="decreaseSize-btn btn-round" onclick="onSetFont(-10)" title="click to decrease font size">A-</button>
+                            <button class="increaseSize-btn btn-round" onclick="onSetFont(10)"
+                                title="click to increase font size">A+</a></button>
+                            <button class="decreaseSize-btn btn-round" onclick="onSetFont(-10)"
+                                title="click to decrease font size">A-</button>
                         </section>
                         <section class="align-txt-btns">
-                            <button class="btn-round" onclick="onChangeAlign('left')" title="click to align text to left"><i
-                                    class="fa-solid fa-align-left"></i></button>
-                            <button class="btn-round" onclick="onChangeAlign('center')" title="click to align text to center"><i
-                                    class="fa-solid fa-align-center"></i></button>
-                            <button class="btn-round" onclick="onChangeAlign('right')" title="click to align text to right"><i
-                                    class="fa-solid fa-align-right"></i></button>
+                            <button class="btn-round" onclick="onChangeAlign('left')"
+                                title="click to align text to left"><i class="fa-solid fa-align-left"></i></button>
+                            <button class="btn-round" onclick="onChangeAlign('center')"
+                                title="click to align text to center"><i class="fa-solid fa-align-center"></i></button>
+                            <button class="btn-round" onclick="onChangeAlign('right')"
+                                title="click to align text to right"><i class="fa-solid fa-align-right"></i></button>
                         </section>
 
                         <section>
                             <button class="btn-round"><i class="fa-solid fa-palette"> <input type="color" name="" id=""
                                         oninput="onChangeColor(this.value)" title="click to change color"></i></button>
-                            <button class="btn-round"><i class="fa-solid fa-font"> 
-                                <input type="search" name="" class="fonts" placeholder="Choose font"  oninput="onChangeFont(this.value)" list="fonts"></i></button>
-                                <datalist id="fonts">
-                                    <option value="montserrat">
-                                    <option value="playfair">
-                                    <option value="ubuntu">
-                                    <option value="inconsolata">
-                                  </datalist>
+                            <button class="btn-round"><i class="fa-solid fa-font">
+                                    <input type="search" name="" class="fonts" placeholder="Choose font"
+                                        oninput="onChangeFont(this.value)" list="fonts"></i></button>
+                            <datalist id="fonts">
+                                <option value="montserrat">
+                                <option value="playfair">
+                                <option value="ubuntu">
+                                <option value="inconsolata">
+                            </datalist>
                         </section>
                     </div>
 
-                    <div class="emojis-container flex"> 
-                        <button onclick="onChangePage(-1)" class="btn-page prev"><i class="fa-solid fa-arrow-left"></i></button>
+                    <div class="emojis-container flex">
+                        <button onclick="onChangePage(-1)" class="btn-page prev"><i
+                                class="fa-solid fa-arrow-left"></i></button>
                         <section class="emojis flex space-between "></section>
-                        <button onclick="onChangePage(1)" class="btn-page next"><i class="fa-solid fa-arrow-right"></i></button>
+                        <button onclick="onChangePage(1)" class="btn-page next"><i
+                                class="fa-solid fa-arrow-right"></i></button>
                     </div>
 
 
-                    <section class="import-btns flex">                       
+                    <section class="import-btns flex">
                         <a href="#" onclick="onDownloadImg(this)" download="my-img.jpg">
-                                <button class="card-button btn-round btn-download"title="click to download">Download</button>
+                            <button class="card-button btn-round btn-download"
+                                title="click to download">Download</button>
                         </a>
-                        <button class="card-button btn-round" onclick="onUploadImg()" title="click to share on Facebook">Share</button>
-                        <button class="card-button btn-round" onclick="onSaveMeme()" title="click to save to meme">Save</button>
+                        <button class="card-button btn-round" onclick="onUploadImg()"
+                            title="click to share on Facebook">Share</button>
+                        <button class="card-button btn-round" onclick="onSaveMeme()"
+                            title="click to save to meme">Save</button>
                     </section>
 
-                    <input class="image" type="file" class="file-input btn" name="image"
-                        onchange="onImgInput(event)" />
+                    <input class="image" type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
                 </section>
             </div>
             </div>
@@ -175,16 +179,16 @@
     </main>
 
     <!-- msg-place -->
-    <div class="flash-msg" >
+    <div class="save-meme-msg">
         <h1>
             Meme saved successfully! <i class="fa-regular fa-floppy-disk"></i>
-        </h1>  
+        </h1>
     </div>
 
-<!-- footer place-->
+    <!-- footer place-->
 
 
-    
+
 
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
@@ -194,6 +198,7 @@
     <script src="js/language.controller.js"></script>
     <script src="js/modal-menu.controller.js"></script>
     <script src="js/meme.controller.js"></script>
+    <script src="js/canvas.controller.js"></script>
     <script src="js/saved-memes.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
 </body>
