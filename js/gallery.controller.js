@@ -42,6 +42,7 @@ function onShowImgGallery() {
 
 function onFilterImgs(keyword) {
   filterImgs(keyword)
+  documentActions('#img-search','value', keyword)
   renderGallery()
 }
 
