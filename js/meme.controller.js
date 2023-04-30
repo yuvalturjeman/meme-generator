@@ -1,7 +1,5 @@
 'use strict'
 
-
-
 function renderMeme() {
   const meme = getMeme()
   let currImg = getImageById(meme.selectedImgId)
@@ -42,7 +40,7 @@ function onChangeTextFont(font) {
 }
 
 function onSwitchLine() {
-  switchLine()
+  switchLine(gMeme.selectedLineIdx)
   changeInputTxt()
 }
 
