@@ -11,7 +11,7 @@ function makeLorem(wordCount = 30) {
 }
 
 function makeMemesTxt() {
-  const memesTxt = ['When your code is not functioning', 'when to tierd to go to bed','when you did wrong']
+  const memesTxt = ['When your code is not functioning', 'when to tired to go to bed','when you did wrong']
   var txt = ''
     txt += memesTxt[Math.floor(Math.random() * memesTxt.length)] + ' '
     return txt
