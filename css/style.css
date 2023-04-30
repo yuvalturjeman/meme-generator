@@ -1,5 +1,7 @@
 /**** BASICS ****/
 @import "basics/base.css";
+@import "basics/buttons.css";
+
 @import "basics/helpers.css";
 @import "basics/layout.css";
 
@@ -13,7 +15,7 @@
 @import "components/memes-page.css";
 @import "components/main-content.css";
 
-/**** SETUP ****/
+/* *** SETUP *** */
 @import "setup/vars.css";
 @import "setup/typography.css";
-@import "setup/mq.css";
+@import "setup/mq.css"; 
