@@ -18,7 +18,6 @@ var gKeywordSearchCountMap = {
   awkward: 1,
 } 
 
-
 function filterImgs(keyword) {
     var counter = 0
     gFilteredImgs = gImgs.reduce((acc, img) => {
