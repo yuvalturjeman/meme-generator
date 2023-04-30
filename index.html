@@ -42,7 +42,7 @@
         <!-- lang control-->
         <section class="lang-selector">
             <!-- onSetLang(this.value) -->
-            <select onchange="onSetLang(this.value)">
+            <select onchange="setLang(this.value)">
                 <option value="en">English</option>
                 <option value="he">עברית</option>
             </select>
@@ -96,9 +96,9 @@
                         </div>
 
                         <section class="change-size-btns">
-                            <button class="increaseSize-btn btn-round" onclick="onSetFont(10)"
+                            <button class="increase-size-btn btn-round" onclick="onSetFont(10)"
                                 title="click to increase font size">A+</a></button>
-                            <button class="decreaseSize-btn btn-round" onclick="onSetFont(-10)"
+                            <button class="decrease-size-btn btn-round" onclick="onSetFont(-10)"
                                 title="click to decrease font size">A-</button>
                         </section>
                         <section class="align-txt-btns">
