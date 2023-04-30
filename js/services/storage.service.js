@@ -1,4 +1,4 @@
-'use strict'
+use strict'
 
 function loadImageFromInput(ev, onImageReady) {
     const reader = new FileReader()
