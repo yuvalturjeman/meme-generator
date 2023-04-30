@@ -38,8 +38,8 @@
                     <li><a href="#" onclick="onToggleModal()">About</a></li>
                 </ul>
             </nav>
-           </section>
         </section>
+        
     </header>
 
     <!-- Photos gallery page-->
@@ -50,7 +50,7 @@
                 <input id="img-search" type="search" placeholder="type a word" oninput="onFilterImgs(this.value)"
                     list="keywords">
             </label>
-            <button data-trans="flexible" class="btn-generate button btn-round" onclick="onRandomMeme()">I'm
+            <button class="btn-generate button btn-round" onclick="onRandomMeme()">I'm
                 flexible</button>
 
         </section>
@@ -158,17 +158,19 @@
             Meme saved successfully! <i class="fa-regular fa-floppy-disk"></i>
         </h1>
     </div>
+    <!-- footer place-->
 
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/gallery.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/event-listener.controller.js"></script>
+    <script src="js/language.controller.js"></script>
     <script src="js/modal-menu.controller.js"></script>
+    <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
     <script src="js/canvas.controller.js"></script>
     <script src="js/saved-memes.controller.js"></script>
-    <script src="js/gallery.controller.js"></script>
 </body>
 
 </html>
