@@ -3,6 +3,7 @@ const STORAGE_KEY = 'memes'
 const STORAGE_KEY1 = 'memesInfo'
 
 
+
 // saved memes page
 function renderSavedMemesPage() {
     console.log('memespage');
@@ -52,8 +53,8 @@ function renderSavedMemesPage() {
   function savedMemeMsg() {
     const elFlashMsg = document.querySelector('.save-meme-msg')
     elFlashMsg.style.display = 'inline'
-    setTimeout(() => {
+   setTimeout(() => {
       elFlashMsg.style.display = 'none'
     }, 2000);
   }
-  
+
