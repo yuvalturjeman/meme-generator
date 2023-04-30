@@ -14,29 +14,7 @@ function drawText(text, color, size, font = 'times', align, lineIdx) {
     const y = meme.lines[lineIdx].y
     gCtx.strokeText(text, x, y)
     gCtx.fillText(text, x, y)
-
-    if (lineIdx === meme.selectedLineIdx) {
-        drawLineBorder(lineIdx)
-      }
 }
-
-function drawLineBorder(lineIdx) {
-    const line = getLine(lineIdx)
-    const metrics = gCtx.measureText(line.txt)
-    const txtWidth = metrics.width
-    const fontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent
-    const x = line.x - txtWidth / 2 - 10
-    const y = line.y - fontHeight / 2 - 10
-    const width = txtWidth + 20
-    const height = fontHeight + 20
-  
-    gCtx.beginPath()
-    gCtx.lineWidth = '3'
-    gCtx.strokeStyle = 'white'
-    gCtx.rect(x, y, width, height)
-    gCtx.stroke()
-  }
-
 
 function onLineHeightChange(diff) {
     const meme = getMeme()
