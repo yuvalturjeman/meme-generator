@@ -57,5 +57,3 @@ function renderSavedMemesPage() {
     }, 2000);
   }
   
-
-  
