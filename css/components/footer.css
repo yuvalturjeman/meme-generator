@@ -1,0 +1,19 @@
+.footer-container {
+    flex-direction: column;
+    margin-inline-end: 60px;
+    margin-inline-start: 60px;
+    opacity: 0.9;
+    position: sticky;
+    bottom: 0;
+  }
+
+  .main-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: var(--clr4);
+    position: sticky;
+    bottom: 0;
+    opacity: 0.7;
+    height: 50px;
+  }
